@@ -98,7 +98,7 @@ public class AchievementList
 		shootEmUp = (new Achievement(28, "shootEmUp", -6, 0, Item.blasterpistol, mayTheForceBeWithYou)).registerAchievement();
 		youAreNotMyFather = (new Achievement(29, "youAreNotMyFather", -4, -2, Item.redlightsaber, mayTheForceBeWithYou)).registerAchievement();
 		likeFatherLikeSon = (new Achievement(30, "likeFatherLikeSon", -4, -4, Item.helmetChain, youAreNotMyFather)).registerAchievement();
-		thisIsntStarWars = (new Achievement(31, "thisIsntStarWars", -6, -2, Item.gandalfstaff, mayTheForceBeWithYou)).registerAchievement();
+		thisIsntStarWars = (new Achievement(31, "thisIsntStarWars", 0, -2, Item.gandalfstaff, mayTheForceBeWithYou)).registerAchievement();
 		//SnorriDev
 		
         System.out.println((new StringBuilder()).append(achievementList.size()).append(" achievements").toString());
