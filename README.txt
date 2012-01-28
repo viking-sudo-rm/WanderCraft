@@ -1,6 +1,6 @@
 TODO:
 	Programming:
-		Deathstar Gamemode and Structure
+		Deathstar gamemode and structure
 		Wookie
 		X-Wing
 	Graphics:
