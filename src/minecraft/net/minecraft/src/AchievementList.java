@@ -51,6 +51,7 @@ public class AchievementList
 	public static Achievement shootEmUp;
 	public static Achievement youAreNotMyFather;
 	public static Achievement likeFatherLikeSon;
+	public static Achievement thisIsntStarWars;
 	//SnorriDev
 
     public AchievementList()
@@ -92,11 +93,12 @@ public class AchievementList
         overkill = (new Achievement(25, "overkill", -4, 1, Item.swordDiamond, enchantments)).setSpecial().registerAchievement();
         bookcase = (new Achievement(26, "bookcase", -3, 6, Block.bookShelf, enchantments)).registerAchievement();
 		
-		//SnorriDev
+		//SnorriDev add Gandalf Staff
 		mayTheForceBeWithYou = (new Achievement(27, "mayTheForceBeWithYou", -2, 0, Item.greenlightsaber, openInventory)).registerAchievement();
 		shootEmUp = (new Achievement(28, "shootEmUp", -6, 0, Item.blasterpistol, mayTheForceBeWithYou)).registerAchievement();
 		youAreNotMyFather = (new Achievement(29, "youAreNotMyFather", -4, -2, Item.redlightsaber, mayTheForceBeWithYou)).registerAchievement();
 		likeFatherLikeSon = (new Achievement(30, "likeFatherLikeSon", -4, -4, Item.helmetChain, youAreNotMyFather)).registerAchievement();
+		thisIsntStarWars = (new Achievement(31, "thisIsntStarWars", -6, -2, Item.gandalfstaff, mayTheForceBeWithYou)).registerAchievement();
 		//SnorriDev
 		
         System.out.println((new StringBuilder()).append(achievementList.size()).append(" achievements").toString());
