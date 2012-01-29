@@ -53,8 +53,8 @@ public class WorldGenDeathStar extends WorldGenerator
 			
 			troopers[5] = (EntityLiving)EntityList.createEntityInWorld("DarthVader", world);
 			
-			double x1 = (double)x + (world.rand.nextDouble() - world.rand.nextDouble()) * 10D;
-			double z1 = (double)z + (world.rand.nextDouble() - world.rand.nextDouble()) * 10D;
+			double x1 = (double)x + (world.rand.nextDouble() - world.rand.nextDouble()) * 6D + 4D;
+			double z1 = (double)z + (world.rand.nextDouble() - world.rand.nextDouble()) * 6D + 4D;
 			troopers[5].setLocationAndAngles(x1, y+5, z1, world.rand.nextFloat() * 360F, 0.0F);
 			
 			world.entityJoinedWorld(troopers[5]);
