@@ -176,5 +176,10 @@ public class EntityList
 		
         addMapping(net.minecraft.src.EntityVillager.class, "Villager", 120);
         addMapping(net.minecraft.src.EntityEnderCrystal.class, "EnderCrystal", 200);
+		
+		// SnorriDev
+		addMapping(net.minecraft.src.EntityStormTrooper.class, "StormTrooper", 400);
+		addMapping(net.minecraft.src.EntityDarthVader.class, "DarthVader", 401);
+		// SnorriDev
     }
 }
