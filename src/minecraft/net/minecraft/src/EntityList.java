@@ -168,6 +168,12 @@ public class EntityList
         addMapping(net.minecraft.src.EntityWolf.class, "Wolf", 95);
         addMapping(net.minecraft.src.EntityMooshroom.class, "MushroomCow", 96);
         addMapping(net.minecraft.src.EntitySnowman.class, "SnowMan", 97);
+		
+		//SnorriDev
+		addMapping(net.minecraft.src.EntityDarthVader.class, "DarthVader", 98);
+		addMapping(net.minecraft.src.EntityStormTrooper.class, "StormTrooper", 99);
+		//SnorriDev
+		
         addMapping(net.minecraft.src.EntityVillager.class, "Villager", 120);
         addMapping(net.minecraft.src.EntityEnderCrystal.class, "EnderCrystal", 200);
     }

@@ -118,6 +118,10 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.glu.GLU;
 
+//SnorriDev
+import net.minecraft.src.EntityXWing;
+//SnorriDev
+
 // Referenced classes of package net.minecraft.client:
 //            MinecraftApplet
 
@@ -1437,6 +1441,16 @@ public abstract class Minecraft
 								gameSettings.thirdPersonView = 0;
 							}
 							jedi = saberOut;
+							
+							if (thePlayer.ridingEntity instanceof EntityXWing) {
+								if (gameSettings.keyBindAttack.pressed) {
+									((EntityXWing)thePlayer.ridingEntity).fire1();
+									System.out.println("bam");
+								}
+								if (gameSettings.keyBindUseItem.pressed) {
+									((EntityXWing)thePlayer.ridingEntity).fire2();
+								}
+							}
 							//SnorriDev
 							if(Keyboard.getEventKey() == 63)
 							{
