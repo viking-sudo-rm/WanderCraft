@@ -251,6 +251,7 @@ public class CraftingManager
 		addRecipe(new ItemStack(Item.blasterpistol, 1), new Object[] {"#",Character.valueOf('#'),Block.dirt});
 		addRecipe(new ItemStack(Item.plateChain, 1), new Object[] {"##",Character.valueOf('#'),Block.dirt});
 		addRecipe(new ItemStack(Item.gandalfstaff, 1), new Object[] {"##","##",Character.valueOf('#'), Block.dirt});
+		addRecipe(new ItemStack(Block.machinery, 1), new Object[] {"###",Character.valueOf('#'), Block.dirt});
 		//SnorriDev
 		
         addShapelessRecipe(new ItemStack(Item.eyeOfEnder, 1), new Object[] {
