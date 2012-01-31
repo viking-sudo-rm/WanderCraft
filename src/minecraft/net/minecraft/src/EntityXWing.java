@@ -46,6 +46,15 @@ public class EntityXWing extends EntityBoat {
 				riddenByEntity = null;
 			}
 			
+			if (((EntityPlayerSP)riddenByEntity).movementInput.moveStrafe > 0.0F) {
+				fire1();
+				System.out.println("bam");
+			}
+			if (((EntityPlayerSP)riddenByEntity).movementInput.moveStrafe < 0.0F) {
+				fire2();
+				System.out.println("bam");
+			}
+			
 		}
 		
 		motionY -= 0.001D * (double)timeInAir;
@@ -53,7 +62,8 @@ public class EntityXWing extends EntityBoat {
 		if (onGround) {
 			timeInAir = 0;
 			velocity *= 0.9F;
-			if (motionY > 0.25F) {
+			System.out.println(motionY);
+			if ((float)motionY > 0.1F) {
 				explode();
 			}
 		}
@@ -64,11 +74,42 @@ public class EntityXWing extends EntityBoat {
 		
     }
 	
+	public boolean attackEntityFrom(DamageSource damagesource, int i)
+    {
+        if(worldObj.multiplayerWorld || isDead)
+        {
+            return true;
+        }
+        func_41017_d(-func_41016_i());
+        func_41019_c(10);
+        func_41015_b(func_41020_g() + i * 10);
+        setBeenAttacked();
+        if(func_41020_g() > 40)
+        {
+            if(riddenByEntity != null)
+            {
+                riddenByEntity.mountEntity(this);
+            }
+            setEntityDead();
+        }
+        return true;
+    }
+
+	
 	public void fire1() {
-		EntityBullet bullet = new EntityBullet(worldObj,posX,posY,posZ);
-		bullet.setVelocity(motionX * 2,motionY * 2,motionZ * 2);
+		float infront = 5F;
+		float toside = 3F;
+		float basex = (float) (posX - MathHelper.sin(deg2rad(yaw)) * infront);
+		float basez = (float) (posZ + MathHelper.cos(deg2rad(yaw)) * infront);
+		float xtrans = (float) (MathHelper.cos(deg2rad(yaw)) * toside);
+		float ztrans = (float) (MathHelper.sin(deg2rad(yaw)) * toside);
+		EntityBullet bullet = new EntityBullet(worldObj,basex + xtrans,posY,basez - ztrans);
+		EntityBullet bullet1 = new EntityBullet(worldObj,basex - xtrans,posY,basez + ztrans);
+		bullet.setVelocity(motionX * 20D,motionY * 20D,motionZ * 20D);
+		bullet1.setVelocity(motionX * 20D,motionY * 20D,motionZ * 20D);
 		if (! worldObj.multiplayerWorld) {
 			worldObj.entityJoinedWorld(bullet);
+			worldObj.entityJoinedWorld(bullet1);
 		}
 	}
 	
