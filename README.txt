@@ -2,13 +2,10 @@ TODO:
 	Programming:
 		Deathstar gamemode and structure
 		Wookie
-		X-Wing GUI and Model/Renderer
+		X-Wing
 	Graphics:
 		Pixel removal on staff of Gandalf
-		X-Wing skin
+		X-Wing skin - should i update the boat? or do we have different model than the original boat?
 		Wookie skin
 
-
-Note: Jack, your death star gen code actually worked, 
-it's just that the underground biomes on my map were
-spawned before I pulled your changes.
+How should I add weapons to the front of the xwing if we are doing that at all..
