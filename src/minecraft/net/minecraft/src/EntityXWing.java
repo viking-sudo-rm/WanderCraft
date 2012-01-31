@@ -7,12 +7,21 @@ public class EntityXWing extends EntityBoat {
 	private int timeInAir = 0;
 	public float pitch = 0F;
 	public float yaw = 0F;
+	public CooldownMeter machineGun;
+	public CooldownMeter missileLauncher;
 	
+	//
 	//TODO
-	//BETTER BULLET VELOCITIES, collisions, fixed rotation
+	//Better bullet velocities
+	//GUI
+	//Model/render
+	//Pitch rotation
+	//
 
 	public EntityXWing(World world) {
 		super(world);
+		machineGun = new CooldownMeter(75,0D,3000D,10D);
+		missileLauncher = new CooldownMeter(5,20D,5000D,1000D);
 	}
 	
 	private float applyTerminal(float v) {
@@ -43,10 +52,11 @@ public class EntityXWing extends EntityBoat {
 			setRotation(yaw - 90,pitch);
 			riddenByEntity.setRotation(yaw,pitch);
 			
-			if (((EntityPlayerSP)riddenByEntity).movementInput.moveStrafe > 0.0F) {
+			System.out.println(machineGun.isOverheated());
+			if (((EntityPlayerSP)riddenByEntity).movementInput.moveStrafe > 0.0F && machineGun.shoot()) {
 				fire1((float) motionY);
 			}
-			if (((EntityPlayerSP)riddenByEntity).movementInput.moveStrafe < 0.0F) {
+			if (((EntityPlayerSP)riddenByEntity).movementInput.moveStrafe < 0.0F && missileLauncher.shoot()) {
 				fire2((float) motionY);
 			}
 			
