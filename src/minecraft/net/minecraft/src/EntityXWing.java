@@ -9,7 +9,7 @@ public class EntityXWing extends EntityBoat {
 	public float yaw = 0F;
 	
 	//TODO
-	//shooting, collisions, fixed rotation
+	//BETTER BULLET VELOCITIES, collisions, fixed rotation
 
 	public EntityXWing(World world) {
 		super(world);
@@ -26,6 +26,7 @@ public class EntityXWing extends EntityBoat {
 		return degrees * (pi / 180F);
 	}
 	
+	@Override
 	public void onUpdate() {
 		onEntityUpdate();
 		moveEntity(motionX, motionY, motionZ);
@@ -35,24 +36,22 @@ public class EntityXWing extends EntityBoat {
 			yaw = riddenByEntity.rotationYaw;
 			velocity = applyTerminal(velocity + acceleration);
 			float velocityFlat = MathHelper.cos(deg2rad(pitch)) * velocity;
-			motionY = MathHelper.sin(deg2rad(pitch)) * velocity;
+			motionY = -MathHelper.sin(deg2rad(pitch)) * velocity;
 			motionX = -MathHelper.sin(deg2rad(yaw)) * velocityFlat;
 			motionZ = MathHelper.cos(deg2rad(yaw)) * velocityFlat;				
 			
 			setRotation(yaw - 90,pitch);
 			riddenByEntity.setRotation(yaw,pitch);
 			
-			if (riddenByEntity.isDead) {
-				riddenByEntity = null;
-			}
-			
 			if (((EntityPlayerSP)riddenByEntity).movementInput.moveStrafe > 0.0F) {
-				fire1();
-				System.out.println("bam");
+				fire1((float) motionY);
 			}
 			if (((EntityPlayerSP)riddenByEntity).movementInput.moveStrafe < 0.0F) {
-				fire2();
-				System.out.println("bam");
+				fire2((float) motionY);
+			}
+			
+			if (riddenByEntity.isDead) {
+				riddenByEntity = null;
 			}
 			
 		}
@@ -63,7 +62,7 @@ public class EntityXWing extends EntityBoat {
 			timeInAir = 0;
 			velocity *= 0.9F;
 			System.out.println(motionY);
-			if ((float)motionY > 0.1F) {
+			if ((float)motionY < -0.1F) {
 				explode();
 			}
 		}
@@ -96,24 +95,42 @@ public class EntityXWing extends EntityBoat {
     }
 
 	
-	public void fire1() {
-		float infront = 5F;
-		float toside = 3F;
+	public void fire1(float deltay) {
+		float infront = 4F;
+		float toside = 2.5F;
 		float basex = (float) (posX - MathHelper.sin(deg2rad(yaw)) * infront);
 		float basez = (float) (posZ + MathHelper.cos(deg2rad(yaw)) * infront);
 		float xtrans = (float) (MathHelper.cos(deg2rad(yaw)) * toside);
 		float ztrans = (float) (MathHelper.sin(deg2rad(yaw)) * toside);
-		EntityBullet bullet = new EntityBullet(worldObj,basex + xtrans,posY,basez - ztrans);
-		EntityBullet bullet1 = new EntityBullet(worldObj,basex - xtrans,posY,basez + ztrans);
-		bullet.setVelocity(motionX * 20D,motionY * 20D,motionZ * 20D);
-		bullet1.setVelocity(motionX * 20D,motionY * 20D,motionZ * 20D);
+		EntityBullet bullet = new EntityBullet(worldObj,basex + xtrans,posY - 0.6D,basez - ztrans);
+		EntityBullet bullet1 = new EntityBullet(worldObj,basex - xtrans,posY - 0.6D,basez + ztrans);
+		bullet.setVelocity(motionX  * 30D,deltay * 30D,motionZ * 30D);
+		bullet1.setVelocity(motionX * 30D,deltay * 30D,motionZ * 30D);
+		//bullet.setVelocity(motionX + (motionX / motionX) * 60D,deltay + (deltay / motionX) * 60D,motionZ + (motionZ / motionX) * 60D);
+		//bullet1.setVelocity(motionX * (motionX / motionX) * 60D,deltay + (deltay / motionX) * 60D,motionZ + (motionZ / motionX) * 60D);
 		if (! worldObj.multiplayerWorld) {
 			worldObj.entityJoinedWorld(bullet);
 			worldObj.entityJoinedWorld(bullet1);
 		}
 	}
 	
-	public void fire2() {
+	public void fire2(float deltay) {
+		float infront = 4F;
+		float toside = 2.5F;
+		float basex = (float) (posX - MathHelper.sin(deg2rad(yaw)) * infront);
+		float basez = (float) (posZ + MathHelper.cos(deg2rad(yaw)) * infront);
+		float xtrans = (float) (MathHelper.cos(deg2rad(yaw)) * toside);
+		float ztrans = (float) (MathHelper.sin(deg2rad(yaw)) * toside);
+		EntityBullet bullet = new EntityMissile(worldObj,basex + xtrans,posY - 0.6D,basez - ztrans);
+		EntityBullet bullet1 = new EntityMissile(worldObj,basex - xtrans,posY - 0.6D,basez + ztrans);
+		bullet.setVelocity(motionX  * 20D,deltay * 20D,motionZ * 20D);
+		bullet1.setVelocity(motionX * 20D,deltay * 20D,motionZ * 20D);
+		//bullet.setVelocity(motionX + (motionX / motionX) * 60D,deltay + (deltay / motionX) * 60D,motionZ + (motionZ / motionX) * 60D);
+		//bullet1.setVelocity(motionX * (motionX / motionX) * 60D,deltay + (deltay / motionX) * 60D,motionZ + (motionZ / motionX) * 60D);
+		if (! worldObj.multiplayerWorld) {
+			worldObj.entityJoinedWorld(bullet);
+			worldObj.entityJoinedWorld(bullet1);
+		}
 	}
 	
 	public void explode() {
