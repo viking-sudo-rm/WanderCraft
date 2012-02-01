@@ -71,13 +71,13 @@ public class RenderManager
 		// SNORRIDEV
 		entityRenderMap.put(net.minecraft.src.EntityDarthVader.class, new RenderBiped(new ModelZombie(), 0.5F));
 		entityRenderMap.put(net.minecraft.src.EntityStormTrooper.class, new RenderBiped(new ModelZombie(), 0.5F));
-		//entityRenderMap.put(net.minecraft.src.EntityBullet.class, new RenderSnowball(162));
 		entityRenderMap.put(net.minecraft.src.EntityBullet.class, new RenderBullet());
 		entityRenderMap.put(net.minecraft.src.EntityLightsaberBlue.class, new RenderLightsaber("blue"));
 		entityRenderMap.put(net.minecraft.src.EntityLightsaberGreen.class, new RenderLightsaber("green"));
 		entityRenderMap.put(net.minecraft.src.EntityLightsaberRed.class, new RenderLightsaber("red"));
 		entityRenderMap.put(net.minecraft.src.EntityLightsaberPurple.class, new RenderLightsaber("purple"));
 		entityRenderMap.put(net.minecraft.src.EntityDeathStarCorePrimed.class, new RenderTNTPrimed(Block.deathstarcore));
+		entityRenderMap.put(net.minecraft.src.EntityWookie.class, new RenderBiped(new ModelZombie(), 0.5F));
 		// SNORRIDEV
         entityRenderMap.put(net.minecraft.src.EntitySnowman.class, new RenderSnowMan());
         entityRenderMap.put(net.minecraft.src.EntitySkeleton.class, new RenderBiped(new ModelSkeleton(), 0.5F));
