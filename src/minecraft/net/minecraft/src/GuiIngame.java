@@ -69,6 +69,12 @@ public class GuiIngame extends Gui
         {
             renderPumpkinBlur(k, l);
         }
+		//SnorriDev
+		if (mc.thePlayer.ridingEntity != null && mc.thePlayer.ridingEntity instanceof EntityXWing) {
+			renderFlyingScreen(k,l);
+			//renderPumpkinBlur(k,l);
+		}
+		//SnorriDev
         if(!mc.thePlayer.isPotionActive(Potion.potionConfusion))
         {
             float f1 = mc.thePlayer.prevTimeInPortal + (mc.thePlayer.timeInPortal - mc.thePlayer.prevTimeInPortal) * f;
@@ -103,6 +109,7 @@ public class GuiIngame extends Gui
             int i5 = foodstats.getFoodLevel();
             int k5 = foodstats.getPrevFoodLevel();
             func_41039_c();
+			
             if(mc.playerController.shouldDrawHUD())
             {
 			
@@ -524,6 +531,27 @@ public class GuiIngame extends Gui
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
+    private void renderFlyingScreen(int i, int j)
+    {
+        GL11.glDisable(2929 /*GL_DEPTH_TEST*/);
+        GL11.glDepthMask(false);
+        GL11.glBlendFunc(770, 771);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
+        GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, mc.renderEngine.getTexture("%blur%/misc/flyingscreen.png"));
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.addVertexWithUV(0.0D, j, -90D, 0.0D, 1.0D);
+        tessellator.addVertexWithUV(i, j, -90D, 1.0D, 1.0D);
+        tessellator.addVertexWithUV(i, 0.0D, -90D, 1.0D, 0.0D);
+        tessellator.addVertexWithUV(0.0D, 0.0D, -90D, 0.0D, 0.0D);
+        tessellator.draw();
+        GL11.glDepthMask(true);
+        GL11.glEnable(2929 /*GL_DEPTH_TEST*/);
+        GL11.glEnable(3008 /*GL_ALPHA_TEST*/);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
     private void renderVignette(float f, int i, int j)
     {
         f = 1.0F - f;
@@ -553,6 +581,8 @@ public class GuiIngame extends Gui
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glBlendFunc(770, 771);
     }
+	
+
 
     private void renderPortalOverlay(float f, int i, int j)
     {

@@ -21,7 +21,7 @@ public class EntityXWing extends EntityBoat {
 	public EntityXWing(World world) {
 		super(world);
 		machineGun = new CooldownMeter(75,0D,3000D,10D);
-		missileLauncher = new CooldownMeter(5,20D,5000D,1000D);
+		missileLauncher = new CooldownMeter(7,20D,5000D,1000D);
 	}
 	
 	private float applyTerminal(float v) {
@@ -72,7 +72,7 @@ public class EntityXWing extends EntityBoat {
 			timeInAir = 0;
 			velocity *= 0.9F;
 			System.out.println(motionY);
-			if ((float)motionY < -0.1F) {
+			if ((float)motionY < -0.2F) {
 				explode();
 			}
 		}
@@ -131,8 +131,8 @@ public class EntityXWing extends EntityBoat {
 		float basez = (float) (posZ + MathHelper.cos(deg2rad(yaw)) * infront);
 		float xtrans = (float) (MathHelper.cos(deg2rad(yaw)) * toside);
 		float ztrans = (float) (MathHelper.sin(deg2rad(yaw)) * toside);
-		EntityBullet bullet = new EntityMissile(worldObj,basex + xtrans,posY - 0.6D,basez - ztrans);
-		EntityBullet bullet1 = new EntityMissile(worldObj,basex - xtrans,posY - 0.6D,basez + ztrans);
+		EntityMissile bullet = new EntityMissile(worldObj,basex + xtrans,posY - 0.6D,basez - ztrans);
+		EntityMissile bullet1 = new EntityMissile(worldObj,basex - xtrans,posY - 0.6D,basez + ztrans);
 		bullet.setVelocity(motionX  * 20D,deltay * 20D,motionZ * 20D);
 		bullet1.setVelocity(motionX * 20D,deltay * 20D,motionZ * 20D);
 		//bullet.setVelocity(motionX + (motionX / motionX) * 60D,deltay + (deltay / motionX) * 60D,motionZ + (motionZ / motionX) * 60D);
