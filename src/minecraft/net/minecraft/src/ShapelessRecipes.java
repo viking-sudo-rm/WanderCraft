@@ -14,7 +14,7 @@ public class ShapelessRecipes
 {
 
     private final ItemStack recipeOutput;
-    private final List recipeItems;
+    public final List recipeItems;
 
     public ShapelessRecipes(ItemStack itemstack, List list)
     {

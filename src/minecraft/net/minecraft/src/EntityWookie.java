@@ -9,12 +9,12 @@ public class EntityWookie extends EntityWolf{
 	
 	public EntityWookie(World world) {
 		super(world);
-		texture = "/mob/wookie.png";
+		texture = "/mob/wookie_tame.png";
 	}
 	
 
 	public int getMaxHealth(){
-		return 30;
+		return 20;
 	}
 
 	
@@ -54,13 +54,17 @@ public class EntityWookie extends EntityWolf{
 		worldObj.playSoundAtEntity(this, "random.bow", 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
 		worldObj.entityJoinedWorld(bullet);
 		bullet.setArrowHeading(d, d2 + (double)f1, d1, 1.6F, 12F);
-		attackTime = 20;
+		attackTime = 30;
 		rotationYaw = (float)((Math.atan2(d1, d) * 180D) / 3.1415927410125732D) - 90F;
         hasAttacked = true;
 	}
 	
 	public void attackEntity(Entity entity, float f) {
-		fire(entity);
+		if(f < 20F && attackTime == 0) {
+            for (int t = 0; t < 3; t++) {
+				fire(entity);
+            }
+		}
     }
 	
 	public boolean interact(EntityPlayer entityplayer)
@@ -68,7 +72,7 @@ public class EntityWookie extends EntityWolf{
         ItemStack itemstack = entityplayer.inventory.getCurrentItem();
         if(!isWolfTamed())
         {
-            if(itemstack != null && itemstack.itemID == Item.bone.shiftedIndex && !isWolfAngry())
+            if(itemstack != null && itemstack.itemID == Item.ingotGold.shiftedIndex && !isWolfAngry())
             {
                 itemstack.stackSize--;
                 if(itemstack.stackSize <= 0)
@@ -129,7 +133,7 @@ public class EntityWookie extends EntityWolf{
 	
     static 
     {
-        defaultHeldItem = new ItemStack(Item.swordGold, 1);
+        defaultHeldItem = new ItemStack(Item.blasterpistol, 1);
     }
 
 }

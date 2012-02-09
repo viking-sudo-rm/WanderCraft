@@ -62,6 +62,11 @@ public class Item
 	public static Item handle = (new ItemHandle(2034)).setFull3D().setIconIndex(148).setItemName("handle");
 	public static Item blasterpistol = (new ItemBlasterPistol(2035)).setFull3D().setIconIndex(161).setItemName("blasterPistol");
 	public static Item gandalfstaff = (new ItemGandalfStaff(2036)).setFull3D().setIconIndex(160).setItemName("gandalfStaff");
+	public static Item battleaxegold = (new ItemBattleAxe(2037,EnumToolMaterial.GOLD)).setIconIndex(192).setItemName("battleAxeGold");
+	public static Item battleaxewood = (new ItemBattleAxe(2038,EnumToolMaterial.WOOD)).setIconIndex(193).setItemName("battleAxeWood");
+	public static Item battleaxeiron = (new ItemBattleAxe(2039,EnumToolMaterial.IRON)).setIconIndex(194).setItemName("battleAxeIron");
+	public static Item battleaxediamond = (new ItemBattleAxe(2040,EnumToolMaterial.EMERALD)).setIconIndex(195).setItemName("battleAxeDiamond");
+	public static Item battleaxestone = (new ItemBattleAxe(2041,EnumToolMaterial.STONE)).setIconIndex(196).setItemName("battleAxeStone");
 	//SnorriDev
 	
     public static Item stick = (new Item(24)).setIconCoord(5, 3).setFull3D().setItemName("stick");

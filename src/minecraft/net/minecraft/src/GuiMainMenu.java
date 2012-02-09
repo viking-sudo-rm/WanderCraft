@@ -103,13 +103,18 @@ public class GuiMainMenu extends GuiScreen
         controlList.add(new GuiButton(1, width / 2 - 100, i, stringtranslate.translateKey("menu.singleplayer")));
         controlList.add(multiplayerButton = new GuiButton(2, width / 2 - 100, i + 24, stringtranslate.translateKey("menu.multiplayer")));
         controlList.add(new GuiButton(3, width / 2 - 100, i + 48, stringtranslate.translateKey("menu.mods")));
+		
+		//SnorriDev
+		controlList.add(new GuiButton(5, width / 2 - 100, i + 72, stringtranslate.translateKey("menu.guide")));
+		//SnorriDev
+		
         if(mc.hideQuitButton)
         {
-            controlList.add(new GuiButton(0, width / 2 - 100, i + 72, stringtranslate.translateKey("menu.options")));
+            controlList.add(new GuiButton(0, width / 2 - 100, i + 96, stringtranslate.translateKey("menu.options")));
         } else
         {
-            controlList.add(new GuiButton(0, width / 2 - 100, i + 72 + 12, 98, 20, stringtranslate.translateKey("menu.options")));
-            controlList.add(new GuiButton(4, width / 2 + 2, i + 72 + 12, 98, 20, stringtranslate.translateKey("menu.quit")));
+            controlList.add(new GuiButton(0, width / 2 - 100, i + 96, 98, 20, stringtranslate.translateKey("menu.options")));
+            controlList.add(new GuiButton(4, width / 2 + 2, i + 96, 98, 20, stringtranslate.translateKey("menu.quit")));
         }
         if(mc.session == null)
         {
@@ -139,6 +144,11 @@ public class GuiMainMenu extends GuiScreen
         {
             mc.shutdown();
         }
+		//SnorriDev
+		if (guibutton.id == 5) {
+			//display GUI screen for the Guide
+			mc.displayGuiScreen(new GuiGuide(this));
+		}
     }
 
     private void func_35355_b(int i, int j, float f)
@@ -309,8 +319,9 @@ public class GuiMainMenu extends GuiScreen
         GL11.glScalef(f1, f1, f1);
         drawCenteredString(fontRenderer, splashText, 0, -8, 0xffff00);
         GL11.glPopMatrix();
-        drawString(fontRenderer, "Minecraft 1.0.0", 2, height - 10, 0xffffff);
-        String s = "Copyright Mojang AB. Do not distribute!";
+		//SnorriDev
+        drawString(fontRenderer, "WanderCraft 1.0.0", 2, height - 10, 0xffffff);
+        String s = "Copyright Mojang AB. Edited by SnorriDev. Do not distribute!";
         drawString(fontRenderer, s, width - fontRenderer.getStringWidth(s) - 2, height - 10, 0xffffff);
         super.drawScreen(i, j, f);
     }

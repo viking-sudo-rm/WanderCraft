@@ -77,6 +77,9 @@ public class SlotCrafting extends Slot
 		if (itemstack.itemID == Item.blasterpistol.shiftedIndex) {
 			thePlayer.addStat(AchievementList.shootEmUp, 1);
 		}
+		if (itemstack.itemID == Item.gandalfstaff.shiftedIndex) {
+			thePlayer.addStat(AchievementList.thisIsntStarWars, 1);
+		}
 		//SnorriDev
         for(int i = 0; i < craftMatrix.getSizeInventory(); i++)
         {

@@ -1441,6 +1441,7 @@ public abstract class Minecraft
 								gameSettings.thirdPersonView = 0;
 							}
 							jedi = saberOut;
+							
 							//SnorriDev
 							if(Keyboard.getEventKey() == 63)
 							{

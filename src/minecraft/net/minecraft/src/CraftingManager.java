@@ -18,6 +18,10 @@ public class CraftingManager
 
     private static final CraftingManager instance = new CraftingManager();
     private List recipes;
+	
+	//SnorriDev
+	public List snorriRecipes;
+	private boolean snorri = false;
 
     public static final CraftingManager getInstance()
     {
@@ -27,6 +31,7 @@ public class CraftingManager
     private CraftingManager()
     {
         recipes = new ArrayList();
+		snorriRecipes = new ArrayList();
         (new RecipesTools()).addRecipes(this);
         (new RecipesWeapons()).addRecipes(this);
         (new RecipesIngots()).addRecipes(this);
@@ -242,16 +247,36 @@ public class CraftingManager
         });
 		
 		//SnorriDev
-        addRecipe(new ItemStack(Block.deathstarcore, 1), new Object[] {"###", "###", "###", Character.valueOf('#'), Block.dirt});
-		addRecipe(new ItemStack(Item.handle, 1), new Object[] {"#", "#", Character.valueOf('#'), Block.dirt});
-		addRecipe(new ItemStack(Item.bluelightsaber, 1), new Object[] {"x","x","#",Character.valueOf('#'),Item.handle,Character.valueOf('x'),Block.dirt});
+		
+		snorri = true;
+		
+        addRecipe(new ItemStack(Block.deathstarcore, 1), new Object[] {"###", "#t#", "###", Character.valueOf('#'), Item.diamond, Character.valueOf('t'), Block.tnt});
+		addRecipe(new ItemStack(Item.handle, 1), new Object[] {"#", "#", Character.valueOf('#'), Item.ingotIron});
+		
+		//lightsabers
+		addShapelessRecipe(new ItemStack(Item.bluelightsaber, 1), new Object[] {new ItemStack(Item.dyePowder, 1, 6),new ItemStack(Item.handle, 1)});
+		addShapelessRecipe(new ItemStack(Item.redlightsaber, 1), new Object[] {new ItemStack(Item.dyePowder, 1, 1),new ItemStack(Item.handle, 1)});
+		addShapelessRecipe(new ItemStack(Item.greenlightsaber, 1), new Object[] {new ItemStack(Item.dyePowder, 1, 10),new ItemStack(Item.handle, 1)});
+		addShapelessRecipe(new ItemStack(Item.purplelightsaber, 1), new Object[] {new ItemStack(Item.dyePowder, 1, 5),new ItemStack(Item.handle, 1)});
+		
+		/*addRecipe(new ItemStack(Item.bluelightsaber, 1), new Object[] {"x","x","#",Character.valueOf('#'),Item.handle,Character.valueOf('x'),Block.dirt});
 		addRecipe(new ItemStack(Item.redlightsaber, 1), new Object[] {"x","#",Character.valueOf('#'),Item.handle,Character.valueOf('x'),Block.dirt});
 		addRecipe(new ItemStack(Item.greenlightsaber, 1), new Object[] {"#",Character.valueOf('#'),Item.handle,Character.valueOf('x'),Block.dirt});
-		addRecipe(new ItemStack(Item.purplelightsaber, 1), new Object[] {"#","x",Character.valueOf('#'),Item.handle,Character.valueOf('x'),Block.dirt});
-		addRecipe(new ItemStack(Item.blasterpistol, 1), new Object[] {"#",Character.valueOf('#'),Block.dirt});
-		addRecipe(new ItemStack(Item.plateChain, 1), new Object[] {"##",Character.valueOf('#'),Block.dirt});
-		addRecipe(new ItemStack(Item.gandalfstaff, 1), new Object[] {"##","##",Character.valueOf('#'), Block.dirt});
-		addRecipe(new ItemStack(Block.machinery, 1), new Object[] {"###",Character.valueOf('#'), Block.dirt});
+		addRecipe(new ItemStack(Item.purplelightsaber, 1), new Object[] {"#","x",Character.valueOf('#'),Item.handle,Character.valueOf('x'),Block.dirt});*/
+
+		addRecipe(new ItemStack(Item.blasterpistol, 1), new Object[] {"###","  #",Character.valueOf('#'),Item.ingotIron});
+		addRecipe(new ItemStack(Item.gandalfstaff, 1), new Object[] {"#t#"," t ","rtr",Character.valueOf('#'), Item.diamond, Character.valueOf('t'), Item.stick, Character.valueOf('r'), Item.redstone});
+		addRecipe(new ItemStack(Block.machinery, 1), new Object[] {"###","###","###",Character.valueOf('#'), Block.button});
+		
+		//battle axes
+		addRecipe(new ItemStack(Item.battleaxewood, 1), new Object[] {"###", "#t#", " t ", Character.valueOf('#'),Block.planks,Character.valueOf('t'),Item.stick});
+		addRecipe(new ItemStack(Item.battleaxestone, 1), new Object[] {"###", "#t#", " t ", Character.valueOf('#'),Block.cobblestone,Character.valueOf('t'),Item.stick});
+		addRecipe(new ItemStack(Item.battleaxeiron, 1), new Object[] {"###", "#t#", " t ", Character.valueOf('#'),Item.ingotIron,Character.valueOf('t'),Item.stick});
+		addRecipe(new ItemStack(Item.battleaxediamond, 1), new Object[] {"###", "#t#", " t ", Character.valueOf('#'),Item.diamond,Character.valueOf('t'),Item.stick});
+		addRecipe(new ItemStack(Item.battleaxegold, 1), new Object[] {"###", "#t#", " t ", Character.valueOf('#'),Item.ingotGold,Character.valueOf('t'),Item.stick});
+		
+		snorri = false;
+		
 		//SnorriDev
 		
         addShapelessRecipe(new ItemStack(Item.eyeOfEnder, 1), new Object[] {
@@ -323,6 +348,9 @@ public class CraftingManager
         }
 
         recipes.add(new ShapedRecipes(j, k, aitemstack, itemstack));
+		if (snorri) {
+			snorriRecipes.add(new ShapedRecipes(j,k,aitemstack,itemstack));
+		}
     }
 
     void addShapelessRecipe(ItemStack itemstack, Object aobj[])
@@ -353,6 +381,10 @@ public class CraftingManager
         }
 
         recipes.add(new ShapelessRecipes(itemstack, arraylist));
+		//SnorriDev
+		if (snorri) {
+			snorriRecipes.add(new ShapelessRecipes(itemstack,arraylist));
+		}
     }
 
     public ItemStack findMatchingRecipe(InventoryCrafting inventorycrafting)

@@ -12,9 +12,9 @@ public class ShapedRecipes
     implements IRecipe
 {
 
-    private int recipeWidth;
-    private int recipeHeight;
-    private ItemStack recipeItems[];
+    public int recipeWidth;
+    public int recipeHeight;
+    public ItemStack recipeItems[];
     private ItemStack recipeOutput;
     public final int recipeOutputItemID;
 

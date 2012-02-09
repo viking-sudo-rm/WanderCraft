@@ -19,6 +19,7 @@ public class EntityArrow extends Entity
 	//SnorriDev
 	protected boolean arrow = true;
 	protected boolean bullet = false;
+	protected boolean explosive = false;
     protected int xTile;
     protected int yTile;
     protected int zTile;
@@ -186,6 +187,9 @@ public class EntityArrow extends Entity
 				System.out.println(worldObj.getBlockId(xTile,yTile,zTile));
 				worldObj.spawnParticle("iconcrack_" + worldObj.getBlockId(xTile,yTile,zTile),xTile,yTile,zTile,xTile,yTile,zTile);
 				setEntityDead();
+				if (explosive) {
+					worldObj.createExplosion(null,posX,posY,posZ,2F);
+				}
 			}
             return;
         }

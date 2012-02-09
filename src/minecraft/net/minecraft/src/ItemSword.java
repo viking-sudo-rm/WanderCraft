@@ -13,7 +13,7 @@ package net.minecraft.src;
 public class ItemSword extends Item
 {
 
-    private int weaponDamage;
+    protected int weaponDamage;
     private final EnumToolMaterial field_40439_b;
 
     public ItemSword(int i, EnumToolMaterial enumtoolmaterial)

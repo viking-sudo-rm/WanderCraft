@@ -2,8 +2,6 @@ package net.minecraft.src;
 
 import java.util.Date;
 
-//finish auto fire code
-
 public class ItemBlasterPistol extends Item {
 
 	private boolean isOverheated = false;

@@ -15,15 +15,16 @@ import java.util.Random;
 public class EntityBoat extends Entity
 {
 
-    private int boatPosRotationIncrements;
-    private double boatX;
-    private double boatY;
-    private double boatZ;
-    private double boatYaw;
-    private double boatPitch;
-    private double velocityX;
-    private double velocityY;
-    private double velocityZ;
+	//SnorriDev
+    protected int boatPosRotationIncrements;
+    protected double boatX;
+    protected double boatY;
+    protected double boatZ;
+    protected double boatYaw;
+    protected double boatPitch;
+    protected double velocityX;
+    protected double velocityY;
+    protected double velocityZ;
 
     public EntityBoat(World world)
     {

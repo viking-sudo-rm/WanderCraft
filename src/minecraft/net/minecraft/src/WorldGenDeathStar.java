@@ -12,8 +12,8 @@ public class WorldGenDeathStar extends WorldGenerator
 	public boolean generate(World world, Random random, int x, int y, int z) {
 		int RADIUS = random.nextInt(11) + 10;
 		EntityLiving troopers[] = new EntityLiving[6];
-		int num = random.nextInt(50);
-		if (num == 0 && !blocksInArea(world, x, y, z, RADIUS)) {
+		int num = random.nextInt(501);
+		if (num == 0 && !blocksInArea(world, x, y, z, RADIUS+20)) {
 			System.out.println("Death star generated at " + x + ", " + y + ", " + z);
 			for (int x1 = x - RADIUS; x1 < x + RADIUS; x1++) {
 				for (int y1 = y - RADIUS; y1 < y + RADIUS; y1++) {
@@ -48,7 +48,6 @@ public class WorldGenDeathStar extends WorldGenerator
 				
 				world.entityJoinedWorld(troopers[i]);
 				
-				System.out.println("Stormtrooper spawned");
 			}
 			
 			troopers[5] = (EntityLiving)EntityList.createEntityInWorld("DarthVader", world);

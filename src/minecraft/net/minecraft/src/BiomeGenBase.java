@@ -97,6 +97,7 @@ public abstract class BiomeGenBase
 		spawnableMonsterList.add(new SpawnListEntry(net.minecraft.src.EntityDarthVader.class, 1, 1, 4));
 		spawnableMonsterList.add(new SpawnListEntry(net.minecraft.src.EntityStormTrooper.class, 10, 4, 4));	
 		spawnableMonsterList.add(new SpawnListEntry(net.minecraft.src.EntityWookie.class, 1, 1, 4));	
+		spawnableMonsterList.add(new SpawnListEntry(net.minecraft.src.EntityEnt.class, 12, 4, 4));
 		// SNORRIDEV
         spawnableWaterCreatureList.add(new SpawnListEntry(net.minecraft.src.EntitySquid.class, 10, 4, 4));
     }
